@@ -5,7 +5,7 @@ COLORS = {
     "START": "#FF00FF",  # magenta
     "GOAL": "#00FF00",  # green
     "OPEN": "#FF0000",  # red
-    "CLOSED": "#0000FF",  # blue
+    "CLOSE": "#0000FF",  # blue
     "BT": "#FFFF00"  # yellow
 }
 
@@ -23,6 +23,8 @@ class Panel:
         self.type = "NORMAL"
         self.root = None
         self.parents = []
+
+        self.n = self.m = self.s = 0 # extend for a*
 
     def bind(self):
         pixel = self.pixel

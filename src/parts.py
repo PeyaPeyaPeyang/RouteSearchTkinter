@@ -1,9 +1,12 @@
 
 COLORS = {
-    "NORMAL": "#FFFFFF",
-    "WALL": "#000000",
-    "START": "#FF00FF",
-    "GOAL": "#00FF00"
+    "NORMAL": "#FFFFFF",  # white
+    "WALL": "#000000",  # black
+    "START": "#FF00FF",  # magenta
+    "GOAL": "#00FF00",  # green
+    "OPEN": "#FF0000",  # red
+    "CLOSED": "#0000FF",  # blue
+    "BT": "#FFFF00"  # yellow
 }
 
 

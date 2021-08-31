@@ -1,0 +1,5 @@
+#!/usr/bin/bash
+
+pipenv install
+
+pipenv run start

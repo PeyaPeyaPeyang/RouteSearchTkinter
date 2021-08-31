@@ -8,7 +8,7 @@ from algorithms import a_star
 config = {
     "width": 500,
     "height": 500,
-    "pixel": 25,
+    "pixel": 10,
     "algo": a_star.AStar
 }
 
@@ -149,7 +149,7 @@ class Main:
 
             i += 1
 
-            if i % 10 == 0:
+            if i % 5 == 0:
                 self.tk.update()
 
     def main(self):

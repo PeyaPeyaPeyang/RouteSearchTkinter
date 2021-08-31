@@ -137,15 +137,20 @@ class Main:
         algo = config["algo"](self.get_pos_at_raw(*self.start),
                               self.get_pos_at_raw(*self.goal),
                               self.panels)
+        i = 0
 
         while True:
             solved = algo.on_step()
             algo.on_bt()
             if solved:
-                print("Solved.")
+                self.tk.update()
+                print("Solved in " + str(i) + " steps")
                 break
 
-            self.tk.update()
+            i += 1
+
+            if i % 10 == 0:
+                self.tk.update()
 
     def main(self):
         self.tk.mainloop()

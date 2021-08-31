@@ -2,12 +2,14 @@ import tkinter
 
 import parts
 from utils import *
+from algorithms import a_star
+
 
 config = {
     "width": 500,
     "height": 500,
     "pixel": 20,
-    "alogo": None
+    "algo": a_star.AStar
 }
 
 
@@ -103,18 +105,11 @@ class Main:
             return
 
         if unique:
-            self.type_as(self.get_pos_at_raw(unique[0], unique[1]), "NORMAL")
+            type_as(self.get_pos_at_raw(unique[0], unique[1]), "NORMAL")
 
-        self.type_as(panel, a("NORMAL", type, panel.type == type))
+        type_as(panel, a("NORMAL", type, panel.type == type))
 
         return calc_at(x, z, config["pixel"])
-
-    def type_as(self, panel, type):
-        if panel is None:
-            return
-        panel.type = type
-
-        panel.bind()
 
     def get_pos_at_raw(self, x, z):
         if len(self.panels) < x - 1:
@@ -122,7 +117,6 @@ class Main:
         if len(self.panels[x]) < z - 1:
             return None
         return self.panels[x][z]
-
 
     def get_pos_at(self, x, z):
         pixel = config["pixel"]
@@ -132,7 +126,6 @@ class Main:
 
         return self.get_pos_at_raw(x, z)
 
-
     def cursor(self, e):
         print("onCursor: " + str(e))
         pass
@@ -141,7 +134,7 @@ class Main:
         if self.start is None or self.goal is None:
             return
 
-        algo = config["algo"](self.get_pos_at_raw(*self.start), self.get_pos_at_raw(*self.goal))
+        algo = config["algo"](self.get_pos_at_raw(*self.start), self.get_pos_at_raw(*self.goal), self.panels)
 
         while True:
             solved = algo.on_step()

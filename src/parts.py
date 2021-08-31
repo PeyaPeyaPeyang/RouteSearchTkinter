@@ -51,13 +51,14 @@ class Panel:
         if self.abs_z < size_z - 1:
             self.parents.append(tree[self.abs_x][self.abs_z + 1])
         if size_z > 0:
-            self.parents.append(tree[self.abs_x][self.abs_z + 1])
+            self.parents.append(tree[self.abs_x][self.abs_z - 1])
 
         return self.parents
 
     def on_search(self):
         if not self.root:
-            raise ValueError("Root panel is not defined.")
-        self.canvas.create_line(self.root.pos_x, self.root.pos_y,  # start
+            return
+        self.canvas.create_line(self.root.pos_x, self.root.pos_z,  # start
                                 self.pos_x, self.pos_z,  # end
+                                width=5
                                 )

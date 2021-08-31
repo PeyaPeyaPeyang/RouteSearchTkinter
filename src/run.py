@@ -1,14 +1,15 @@
+import json
+import os
 import tkinter
 
 import parts
-from utils import *
 from algorithms import a_star
-
+from utils import *
 
 config = {
     "width": 500,
     "height": 500,
-    "pixel": 10,
+    "pixel": 20,
     "algo": a_star.AStar
 }
 
@@ -127,12 +128,14 @@ class Main:
         return self.get_pos_at_raw(x, z)
 
     def cursor(self, e):
-        #print("onCursor: " + str(e))
+        # print("onCursor: " + str(e))
         pass
 
     def start_solve(self):
         if self.start is None or self.goal is None:
             return
+
+        edge_save(self.panels, config["width"], config["height"], config["pixel"])
 
         algo = config["algo"](self.get_pos_at_raw(*self.start),
                               self.get_pos_at_raw(*self.goal),
@@ -158,4 +161,10 @@ class Main:
 
 if __name__ == '__main__':
     main = Main()
+    edge = None
+    if os.path.exists("edge.json"):
+        print("Import?")
+        ad = input("y/N>")
+        if ad.lower() == "y":
+            main.panels = load_edge("edge.json", main.tk.canvas, config)
     main.main()

@@ -12,7 +12,7 @@ COLORS = {
 
 class Panel:
 
-    def __init__(self, canvas, w_x, h_z, pixel):
+    def __init__(self, canvas, w_x, h_z, pixel, type="NORMAL"):
         self.abs_x = w_x
         self.abs_z = h_z
         self.pos_x = w_x * pixel + pixel // 2
@@ -20,7 +20,7 @@ class Panel:
 
         self.pixel = pixel
         self.canvas = canvas
-        self.type = "NORMAL"
+        self.type = type
         self.root = None
         self.parents = []
 

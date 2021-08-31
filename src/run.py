@@ -8,7 +8,7 @@ from algorithms import a_star
 config = {
     "width": 500,
     "height": 500,
-    "pixel": 20,
+    "pixel": 25,
     "algo": a_star.AStar
 }
 
@@ -134,7 +134,9 @@ class Main:
         if self.start is None or self.goal is None:
             return
 
-        algo = config["algo"](self.get_pos_at_raw(*self.start), self.get_pos_at_raw(*self.goal), self.panels)
+        algo = config["algo"](self.get_pos_at_raw(*self.start),
+                              self.get_pos_at_raw(*self.goal),
+                              self.panels)
 
         while True:
             solved = algo.on_step()

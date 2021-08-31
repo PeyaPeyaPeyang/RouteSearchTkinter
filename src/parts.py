@@ -35,7 +35,6 @@ class Panel:
                                      fill=COLORS[self.type])
 
     def search_parents(self, tree, size_x, size_z):
-        self.parents = []
         if self.abs_x < size_x - 1:  # search mid
             self.parents.append(tree[self.abs_x + 1][self.abs_z])
             if self.abs_z > 0:  # left
@@ -44,9 +43,9 @@ class Panel:
                 self.parents.append(tree[self.abs_x + 1][self.abs_z + 1])
         if self.abs_x > 0:
             self.parents.append(tree[self.abs_x - 1][self.abs_z])
-            if self.abs_x > 0:  # left
+            if self.abs_z > 0:  # left
                 self.parents.append(tree[self.abs_x - 1][self.abs_z - 1])
-            if self.abs_x < size_z - 1:
+            if self.abs_z < size_z - 1:
                 self.parents.append(tree[self.abs_x - 1][self.abs_z + 1])
         if self.abs_z < size_z - 1:
             self.parents.append(tree[self.abs_x][self.abs_z + 1])

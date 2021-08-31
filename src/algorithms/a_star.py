@@ -1,15 +1,14 @@
-from algorithms.frame import Algorithm
 from utils import *
 import math
 
 
-class AStar(Algorithm):
+class AStar:
     def __init__(self, start_panel, goal_panel, tree):
         self.goal = goal_panel
         self.last_search = self.current = start_panel
         self.mark_open = [start_panel]
         self.tree = tree
-        self.mark_close = []
+        self.mark_close = {}
 
     def on_bt(self):
         t = self.current
@@ -22,7 +21,7 @@ class AStar(Algorithm):
     def on_step(self):
         for panel in self.mark_open:
             type_as(panel, "OPEN")
-        for panel in self.mark_close:
+        for panel in self.mark_close.keys():
             type_as(panel, "CLOSE")
 
         if len(self.mark_open) == 0:
@@ -34,7 +33,7 @@ class AStar(Algorithm):
             if self.mark_open[i].n < self.mark_open[solve].n:
                 solve = i
 
-            if self.mark_open[i].n == self.mark_open[solve].n \
+            if (self.mark_open[i].n == self.mark_open[solve].n) \
                 and self.mark_open[i].m > self.mark_open[solve].m:
                 solve = i
 
@@ -47,7 +46,7 @@ class AStar(Algorithm):
         if current in self.mark_open:
             self.mark_open.remove(current)
 
-        self.mark_close.append(current)
+        self.mark_close[current] = True
 
         parents = self.current.parents
 
@@ -55,7 +54,9 @@ class AStar(Algorithm):
             parents = current.search_parents(self.tree, len(self.tree), len(self.tree[0]))
 
         for parent in parents:
-            if parent not in self.mark_close:
+            try:
+                self.mark_close[parent]
+            except:
                 if parent.type == "WALL":
                     continue
                 tmp_m = current.m + math.sqrt((parent.pos_x - current.pos_x)**2 + (parent.pos_z - current.pos_z)**2)
@@ -66,7 +67,8 @@ class AStar(Algorithm):
                     continue
 
                 parent.m = tmp_m
-                parent.self = math.sqrt((parent.pos_x - self.goal.pos_x)**2 + (parent.pos_z - self.goal.pos_z)**2)
+                parent.s = math.sqrt((parent.pos_x - self.goal.pos_x)**2 + (self.goal.pos_z - self.goal.pos_z)**2)
+                parent.n = parent.m + parent.s
                 parent.root = current
 
         return False

@@ -59,5 +59,6 @@ class Panel:
             return
         self.canvas.create_line(self.root.pos_x, self.root.pos_z,  # start
                                 self.pos_x, self.pos_z,  # end
-                                width=5
+                                width=5,
+                                fill="green"
                                 )

@@ -3,14 +3,14 @@ import os
 import tkinter
 
 import parts
-from algorithms import a_star
+from algorithms import dijkstra
 from utils import *
 
 config = {
     "width": 500,
     "height": 500,
     "pixel": 20,
-    "algo": a_star.AStar
+    "algo": dijkstra.Dijkstra
 }
 
 

@@ -53,6 +53,8 @@ class Panel:
         if size_z > 0:
             self.parents.append(tree[self.abs_x][self.abs_z + 1])
 
+        return self.parents
+
     def on_search(self):
         if not self.root:
             raise ValueError("Root panel is not defined.")

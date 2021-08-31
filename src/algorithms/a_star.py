@@ -67,7 +67,7 @@ class AStar:
                     continue
 
                 parent.m = tmp_m
-                parent.s = math.sqrt((parent.pos_x - self.goal.pos_x)**2 + (self.goal.pos_z - self.goal.pos_z)**2)
+                parent.s = math.sqrt((parent.pos_x - self.goal.pos_x)**2 + (parent.pos_z - self.goal.pos_z)**2)
                 parent.n = parent.m + parent.s
                 parent.root = current
 

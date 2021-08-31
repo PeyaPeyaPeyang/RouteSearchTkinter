@@ -127,7 +127,7 @@ class Main:
         return self.get_pos_at_raw(x, z)
 
     def cursor(self, e):
-        print("onCursor: " + str(e))
+        #print("onCursor: " + str(e))
         pass
 
     def start_solve(self):

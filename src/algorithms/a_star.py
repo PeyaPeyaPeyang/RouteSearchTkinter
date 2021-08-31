@@ -8,7 +8,7 @@ class AStar:
         self.last_search = self.current = start_panel
         self.mark_open = [start_panel]
         self.tree = tree
-        self.mark_close = {}
+        self.mark_close = []
 
     def on_bt(self):
         t = self.current
@@ -21,7 +21,7 @@ class AStar:
     def on_step(self):
         for panel in self.mark_open:
             type_as(panel, "OPEN")
-        for panel in self.mark_close.keys():
+        for panel in self.mark_close:
             type_as(panel, "CLOSE")
 
         if len(self.mark_open) == 0:
@@ -46,7 +46,7 @@ class AStar:
         if current in self.mark_open:
             self.mark_open.remove(current)
 
-        self.mark_close[current] = True
+        self.mark_close.append(current)
 
         parents = self.current.parents
 
@@ -54,9 +54,7 @@ class AStar:
             parents = current.search_parents(self.tree, len(self.tree), len(self.tree[0]))
 
         for parent in parents:
-            try:
-                self.mark_close[parent]
-            except:
+            if parent not in self.mark_close:
                 if parent.type == "WALL":
                     continue
                 tmp_m = current.m + math.sqrt((parent.pos_x - current.pos_x)**2 + (parent.pos_z - current.pos_z)**2)

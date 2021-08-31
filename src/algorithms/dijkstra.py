@@ -1,5 +1,6 @@
-from utils import *
 import math
+
+from utils import *
 
 
 class Dijkstra:
@@ -57,15 +58,15 @@ class Dijkstra:
             if parent not in self.mark_close:
                 if parent.type == "WALL":
                     continue
-                tmp_m = current.m + math.sqrt((parent.pos_x - current.pos_x)**2 + (parent.pos_z - current.pos_z)**2)
+                tmp_m = current.m + math.sqrt((parent.pos_x - current.pos_x) ** 2 + (parent.pos_z - current.pos_z) ** 2)
 
-                if parent not  in self.mark_open:
+                if parent not in self.mark_open:
                     self.mark_open.append(parent)
                 elif tmp_m >= parent.m:
                     continue
 
                 parent.m = tmp_m
-                parent.s = math.sqrt(parent.pos_x**2 + parent.pos_z**2)
+                parent.s = math.sqrt(parent.pos_x ** 2 + parent.pos_z ** 2)
                 parent.n = parent.m + parent.s
                 parent.root = current
 

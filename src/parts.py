@@ -1,4 +1,3 @@
-
 COLORS = {
     "NORMAL": "#FFFFFF",  # white
     "WALL": "#000000",  # black
@@ -24,7 +23,7 @@ class Panel:
         self.root = None
         self.parents = []
 
-        self.n = self.m = self.s = 0 # extend for a*
+        self.n = self.m = self.s = 0  # extend for a*
 
     def bind(self):
         pixel = self.pixel

@@ -1,8 +1,6 @@
-import json
 import os
 import tkinter
 
-import parts
 from algorithms import dijkstra
 from utils import *
 

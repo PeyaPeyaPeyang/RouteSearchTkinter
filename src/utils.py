@@ -1,5 +1,6 @@
-import parts
 import json
+
+import parts
 
 
 def calc_at(x, z, pixel):

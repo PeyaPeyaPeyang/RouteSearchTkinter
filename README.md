@@ -1,7 +1,7 @@
-# RouteSearchTest
+# RouteSearchTkinter
 
 ## 概要
-+ PythonのTkinterをさわってみた
++ TkinterでのA*とDijkstraの実装
 
 ## 実行
 
